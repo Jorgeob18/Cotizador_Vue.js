@@ -1,5 +1,12 @@
 <script setup>
   import Header from './components/Header.vue'
+
+  /* Si utilizamos Options API agregamos lo siguiente y quitamos setup de etiqueta script*/
+  // export default {
+  //   components: {
+  //     Header
+  //   }
+  // }
 </script>
 
 <template>
