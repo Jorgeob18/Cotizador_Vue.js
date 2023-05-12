@@ -1,4 +1,5 @@
 <script setup>
+import { ref, reactive } from 'vue'
   import Header from './components/Header.vue'
 
   /* Si utilizamos Options API agregamos lo siguiente y quitamos setup de etiqueta script*/
@@ -7,9 +8,19 @@
   //     Header
   //   }
   // }
+  const cantidad = ref(0);
+
+  // const state = reactive({
+  //   cantidad: 0
+  // })
+    
   function handleChange(e) {
-    console.log(e.target.value);
+   cantidad.value = +e.target.value;
+  //  state.cantidad = Number(e.target.value)
   }
+
+  console.log(cantidad.value);
+  // console.log(state.cantidad);
 </script>
 
 <template>
@@ -21,7 +32,9 @@
         type="range"
         class="w-full bg-gray-200 accent-lime-500 hover:accent-lime-600"
         @input="handleChange"
-      >
+      />
+      {{ cantidad }}
+      <!-- {{ state.cantidad }} -->
     </div>
   </div>
   
