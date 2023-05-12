@@ -8,7 +8,10 @@ import { ref, reactive } from 'vue'
   //     Header
   //   }
   // }
-  const cantidad = ref(0);
+  const cantidad = ref(10000);
+  const MIN = 0;
+  const MAX = 20000;
+  const STEP = 100;
 
   // const state = reactive({
   //   cantidad: 0
@@ -31,11 +34,15 @@ import { ref, reactive } from 'vue'
       <input 
         type="range"
         class="w-full bg-gray-200 accent-lime-500 hover:accent-lime-600"
+        min="0"
+        max="20000"
+        step="100"
+        value="10000"
         @input="handleChange"
       />
       <!-- {{ cantidad }} -->
       <!-- {{ state.cantidad }} -->
-      <!-- <p>$ {{cantidad}}</p> -->
+      <p>$ {{cantidad}}</p>
       <!-- <p v-text="`$ ${cantidad}`"></p> -->
       <!-- <p v-html="`$ ${cantidad}`"></p> -->
     </div>
