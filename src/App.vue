@@ -17,10 +17,10 @@ import { ref, reactive } from 'vue'
   //   cantidad: 0
   // })
     
-  function handleChange(e) {
-   cantidad.value = +e.target.value;
-  //  state.cantidad = Number(e.target.value)
-  }
+  // function handleChange(e) {
+  //  cantidad.value = +e.target.value;
+  // //  state.cantidad = Number(e.target.value)
+  // }
 
   console.log(cantidad.value);
   // console.log(state.cantidad);
@@ -37,9 +37,11 @@ import { ref, reactive } from 'vue'
         :min="MIN"
         :max="MAX"
         :step="STEP"
-        value="10000"
-        @input="handleChange"
+        
+        v-model.number="cantidad"
       />
+      <!-- Con v-model para modificar el State no necesitamos especificar el atributo Value y el envento @input | adicionalmente agregamos el modificador "number" para convertir a numero" -->
+      
       <!-- {{ cantidad }} -->
       <!-- {{ state.cantidad }} -->
       <p>$ {{cantidad}}</p>
