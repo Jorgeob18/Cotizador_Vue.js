@@ -29,14 +29,14 @@ import { ref, reactive } from 'vue'
 <template>
   <div class="my-20 max-w-lg mx-auto bg-white shadow p-10">
     <Header />
-
+    <!-- Agregtar atributos dinamicos con ":" antes del atributo, al hacer esto buscara el valor en la variable -->
     <div class="my-5">
       <input 
         type="range"
         class="w-full bg-gray-200 accent-lime-500 hover:accent-lime-600"
-        min="0"
-        max="20000"
-        step="100"
+        :min="MIN"
+        :max="MAX"
+        :step="STEP"
         value="10000"
         @input="handleChange"
       />
