@@ -33,8 +33,11 @@ import { ref, reactive } from 'vue'
         class="w-full bg-gray-200 accent-lime-500 hover:accent-lime-600"
         @input="handleChange"
       />
-      {{ cantidad }}
+      <!-- {{ cantidad }} -->
       <!-- {{ state.cantidad }} -->
+      <!-- <p>$ {{cantidad}}</p> -->
+      <!-- <p v-text="`$ ${cantidad}`"></p> -->
+      <!-- <p v-html="`$ ${cantidad}`"></p> -->
     </div>
   </div>
   
