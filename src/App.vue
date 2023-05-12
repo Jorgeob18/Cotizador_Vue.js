@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
   import Header from './components/Header.vue'
 
   /* Si utilizamos Options API agregamos lo siguiente y quitamos setup de etiqueta script*/
@@ -12,6 +12,15 @@ import { ref, reactive } from 'vue'
   const MIN = 0;
   const MAX = 20000;
   const STEP = 100;
+
+  // Compute Properties    
+  const formatearDinero = computed(() => {
+    const formatter = new Intl.NumberFormat('es-MX', {
+      style: 'currency',
+      currency: 'MXN'
+    });
+    return formatter.format(cantidad.value)
+  })
 
   // const state = reactive({
   //   cantidad: 0
@@ -44,7 +53,7 @@ import { ref, reactive } from 'vue'
       
       <!-- {{ cantidad }} -->
       <!-- {{ state.cantidad }} -->
-      <p>$ {{cantidad}}</p>
+      <p class="text-center my-10 text-5xl font font-extrabold text-indigo-600"> {{formatearDinero}}</p>
       <!-- <p v-text="`$ ${cantidad}`"></p> -->
       <!-- <p v-html="`$ ${cantidad}`"></p> -->
     </div>
