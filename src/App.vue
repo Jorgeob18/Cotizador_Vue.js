@@ -1,6 +1,7 @@
 <script setup>
 import { ref, reactive, computed } from 'vue'
   import Header from './components/Header.vue'
+  import Button from './components/Button.vue'
 
   /* Si utilizamos Options API agregamos lo siguiente y quitamos setup de etiqueta script*/
   // export default {
@@ -22,6 +23,24 @@ import { ref, reactive, computed } from 'vue'
     return formatter.format(cantidad.value)
   })
 
+  const handleChangeDecremento = () => {
+    const valor = cantidad.value - STEP
+    if (valor < MIN) {
+      alert("Cantidad no valida");
+      return;
+    } 
+    cantidad.value = valor
+  }
+
+  const handleChangeIncremento = () => {
+    const valor = cantidad.value + STEP
+    if (valor > MAX) {
+      alert("Cantidad no valida");
+      return;
+    } 
+    cantidad.value = valor
+  }
+
   // const state = reactive({
   //   cantidad: 0
   // })
@@ -38,6 +57,17 @@ import { ref, reactive, computed } from 'vue'
 <template>
   <div class="my-20 max-w-lg mx-auto bg-white shadow p-10">
     <Header />
+    <div class="flex justify-between mt-10">
+      <Button 
+        :operador="'-'"
+        :fn="handleChangeDecremento"
+      />
+      <Button 
+        :operador="'+'"
+        :fn="handleChangeIncremento"
+      />
+      
+    </div>
     <!-- Agregtar atributos dinamicos con ":" antes del atributo, al hacer esto buscara el valor en la variable -->
     <div class="my-5">
       <input 
