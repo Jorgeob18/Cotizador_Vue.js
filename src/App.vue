@@ -2,6 +2,7 @@
 import { ref, reactive, computed } from 'vue'
   import Header from './components/Header.vue'
   import Button from './components/Button.vue'
+  import { calcularTotalPagar } from './helpers'
 
   /* Si utilizamos Options API agregamos lo siguiente y quitamos setup de etiqueta script*/
   // export default {
@@ -11,6 +12,7 @@ import { ref, reactive, computed } from 'vue'
   // }
   const cantidad = ref(10000);
   const meses = ref(6);
+  const total = ref(calcularTotalPagar(cantidad.value, meses.value))
   const MIN = 0;
   const MAX = 20000;
   const STEP = 100;
@@ -22,7 +24,7 @@ import { ref, reactive, computed } from 'vue'
       currency: 'MXN'
     });
     return formatter.format(cantidad.value)
-  })
+  });
 
   const handleChangeDecremento = () => {
     const valor = cantidad.value - STEP
@@ -106,7 +108,7 @@ import { ref, reactive, computed } from 'vue'
         Resumen <span class="text-indigo-600">de pagos</span>
       </h2>
       <p class="text-xl text-gray-500 text-center font-bold">Meses: {{meses}}</p>
-      <p class="text-xl text-gray-500 text-center font-bold">Total a pagar:</p>
+      <p class="text-xl text-gray-500 text-center font-bold">Total a pagar: {{total}}</p>
       <p class="text-xl text-gray-500 text-center font-bold">Mensuales:</p>
     </div>
   </div>
