@@ -60,11 +60,11 @@ import { ref, reactive, computed } from 'vue'
     <div class="flex justify-between mt-10">
       <Button 
         :operador="'-'"
-        :fn="handleChangeDecremento"
+        @fn="handleChangeDecremento"
       />
       <Button 
         :operador="'+'"
-        :fn="handleChangeIncremento"
+        @fn="handleChangeIncremento"
       />
       
     </div>
