@@ -2,7 +2,7 @@
 import { ref, reactive, computed } from 'vue'
   import Header from './components/Header.vue'
   import Button from './components/Button.vue'
-  import { calcularTotalPagar } from './helpers'
+  import { calcularTotalPagar, formatearDinero } from './helpers'
 
   /* Si utilizamos Options API agregamos lo siguiente y quitamos setup de etiqueta script*/
   // export default {
@@ -18,13 +18,13 @@ import { ref, reactive, computed } from 'vue'
   const STEP = 100;
 
   // Compute Properties    
-  const formatearDinero = computed(() => {
-    const formatter = new Intl.NumberFormat('es-MX', {
-      style: 'currency',
-      currency: 'MXN'
-    });
-    return formatter.format(cantidad.value)
-  });
+  // const formatearDinero = computed(() => {
+  //   const formatter = new Intl.NumberFormat('es-MX', {
+  //     style: 'currency',
+  //     currency: 'MXN'
+  //   });
+  //   return formatter.format(cantidad.value)
+  // });
 
   const handleChangeDecremento = () => {
     const valor = cantidad.value - STEP
@@ -86,7 +86,7 @@ import { ref, reactive, computed } from 'vue'
       <!-- {{ cantidad }} -->
       <!-- {{ state.cantidad }} -->
       <p class="text-center my-10 text-5xl font font-extrabold text-indigo-600"> 
-        {{formatearDinero}}
+        {{formatearDinero(cantidad)}}
       </p>
       <!-- <p v-text="`$ ${cantidad}`"></p> -->
       <!-- <p v-html="`$ ${cantidad}`"></p> -->
@@ -108,7 +108,7 @@ import { ref, reactive, computed } from 'vue'
         Resumen <span class="text-indigo-600">de pagos</span>
       </h2>
       <p class="text-xl text-gray-500 text-center font-bold">Meses: {{meses}}</p>
-      <p class="text-xl text-gray-500 text-center font-bold">Total a pagar: {{total}}</p>
+      <p class="text-xl text-gray-500 text-center font-bold">Total a pagar: {{formatearDinero(total)}}</p>
       <p class="text-xl text-gray-500 text-center font-bold">Mensuales:</p>
     </div>
   </div>

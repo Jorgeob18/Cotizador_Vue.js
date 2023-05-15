@@ -23,4 +23,12 @@ const calcularTotalPagar = (cantidad, plazo) => {
   return total;
 };
 
-export { calcularTotalPagar };
+const formatearDinero = (valor) => {
+  const formatter = new Intl.NumberFormat('es-MX', {
+    style: 'currency',
+    currency: 'MXN',
+  });
+  return formatter.format(valor);
+};
+
+export { calcularTotalPagar, formatearDinero };
