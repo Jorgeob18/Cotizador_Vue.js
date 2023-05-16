@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed,watch } from 'vue'
   import Header from './components/Header.vue'
   import Button from './components/Button.vue'
   import { calcularTotalPagar, formatearDinero } from './helpers'
@@ -25,6 +25,7 @@ import { ref, reactive, computed } from 'vue'
   //   });
   //   return formatter.format(cantidad.value)
   // });
+  
 
   const handleChangeDecremento = () => {
     const valor = cantidad.value - STEP
@@ -32,8 +33,13 @@ import { ref, reactive, computed } from 'vue'
       alert("Cantidad no valida");
       return;
     } 
-    cantidad.value = valor
+    cantidad.value = valor;
   }
+
+  watch([cantidad,meses], ()=> {
+    total.value = calcularTotalPagar(cantidad.value, meses.value)
+  });
+  // Con "{Inmediate: true} ejecuta la funcion del watch inmediatamente al cargar la pagina"
 
   const handleChangeIncremento = () => {
     const valor = cantidad.value + STEP
@@ -103,7 +109,7 @@ import { ref, reactive, computed } from 'vue'
         <option value="24">24 Meses</option>
       </select>
     </div>
-    <div class="my-5 space-y-3-bg-gray-50 p-5">
+    <div v-if="total > 0" class="my-5 space-y-3-bg-gray-50 p-5">
       <h2 class="text-2xl font-extrabold text-gray-500 text-center">
         Resumen <span class="text-indigo-600">de pagos</span>
       </h2>
@@ -111,6 +117,7 @@ import { ref, reactive, computed } from 'vue'
       <p class="text-xl text-gray-500 text-center font-bold">Total a pagar: {{formatearDinero(total)}}</p>
       <p class="text-xl text-gray-500 text-center font-bold">Mensuales:</p>
     </div>
+    <p v-else class="text-center text-gray-500 font-bold text-xl">Añade una cantidad y un plazo a pagar</p>
   </div>
   
 </template>
